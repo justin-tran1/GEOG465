@@ -6,6 +6,7 @@
 </head>
 <body>
 <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
 <div id="mapid" style="width: 600px; height: 400px; margin: auto;"></div>
 <script>
 var mymap = L.map('mapid',
@@ -13,7 +14,8 @@ var mymap = L.map('mapid',
 center: [35.10418, -106.62987],
 zoom: 10
 });
-L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png').addTo(mymap);
+var layer = new L.StamenTileLayer('toner');
+mymap.addLayer(layer);
 </script>
 </body>
 </html>
