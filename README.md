@@ -1,3 +1,3 @@
 # GEOG465
 
-Test
+Lab 6 Leaflet.js
