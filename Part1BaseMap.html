@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>geog465_My First Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"/>
+</head>
+<body>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+<div id="mapid" style="width: 600px; height: 400px; margin: auto;"></div>
+<script>
+var mymap = L.map('mapid',
+{
+center: [35.10418, -106.62987],
+zoom: 10
+});
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
+</script>
+</body>
+</html>
