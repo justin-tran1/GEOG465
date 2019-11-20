@@ -23,6 +23,7 @@ var myMarker1 = L.marker([35.126099, -106.536599],
 myMarker1.on('mouseover', function(use){
   use.togglePopup("I am the one who knocks")
 });
+
 var mypolyline = L.polyline(
   [[47.593792, -122.333723],[21.798276, 96.756621],[-17.347259, -114.052004]],
   {color:'#e6d7d7', weight:2}).addTo(mymap);
@@ -46,5 +47,6 @@ var multipolygon = L.polygon(
 <p>
 I made the Albuquerque icon autopan when you drag it outside the boundaries of the map.
 I made the New York Icon (Avengers) not draggable at all, it is stuck in New York City.
+In the bottom right corner there is the attributions, showing the properties I took inspiration from.
 </body>
 </html>
