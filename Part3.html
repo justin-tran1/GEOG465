@@ -14,6 +14,26 @@ center: [47.6558, -122.3078],
 zoom: 15
 });
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
+var seattleIcon = L.icon({iconUrl: 'http://l.thumbs.canstockphoto.com/canstock8020581.jpg',
+  iconSize:[38, 38],});
+var myMarker = L.marker([47.6062, -122.3321],
+  {icon:seattleIcon, draggable: true}).addTo(mymap).bindPopup("Hi, from Seattle");
+var mypolyline = L.polyline(
+  [[47.593792, -122.333723],[21.798276, 96.756621],[-17.347259, -114.052004]],
+  {color:'#e6d7d7', weight:2}).addTo(mymap);
+var mypolygon = L.polygon(
+  [[[48.825293, -103.981806],[46.092644,-103.981806],[54.929688, 96.543221],[-49.003219, 97.180428]]],
+  {color:'#e6d7d7', weight:4, fillColor:'green', fillOpacity:0.4}).addTo(mymap);
+var multipolyline = L.polyline(
+  [
+    [[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
+    [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]
+  ], {color: 'red', weight:8}).addTo(mymap);
+var multipolygon = L.polygon(
+  [
+    [[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
+    [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]
+  ], {color: 'purple', weight:3}).addTo(mymap);
 </script>
 </body>
 </html>
