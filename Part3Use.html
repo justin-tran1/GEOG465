@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Part 3 Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"/>
+</head>
+<body>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+<div id="mapid" style="width: 800px; height: 600px; margin: auto;"></div>
+<script>
+var mymap = L.map('mapid' ,{center: [37.0902, -95.7129],zoom: 4});
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
+
+var NYCIcon = L.icon({iconUrl: 'https://www.searchpng.com/wp-content/uploads/2019/02/avengers-Icon-1024x1024.png',
+  iconSize:[20, 20],});
+var myMarker = L.marker([40.7535, -73.9768],
+  {icon:NYCIcon, draggable: false, attribution: "Avengers"}).addTo(mymap).bindPopup("Avengers HQ in New York City");
+
+var ABQIcon = L.icon({iconUrl: 'https://www.clipartwiki.com/clipimg/full/143-1436618_gus-car-bad-t-shirt-goodman-white-walter.png',
+    iconSize:[20, 20],});
+var myMarker1 = L.marker([35.126099, -106.536599],
+    {icon:ABQIcon, draggable: true, autoPan: true, attribution: "Breaking Bad"}).addTo(mymap).bindPopup("Hello from Albuquerque");
+myMarker1.on('mouseover', function(use){
+  use.togglePopup("I am the one who knocks")
+});
+var mypolyline = L.polyline(
+  [[47.593792, -122.333723],[21.798276, 96.756621],[-17.347259, -114.052004]],
+  {color:'#e6d7d7', weight:2}).addTo(mymap);
+
+var mypolygon = L.polygon(
+  [[[48.825293, -103.981806],[46.092644,-103.981806],[54.929688, 96.543221],[-49.003219, 97.180428]]],
+  {color:'#e6d7d7', weight:4, fillColor:'green', fillOpacity:0.4}).addTo(mymap);
+
+var multipolyline = L.polyline(
+  [
+    [[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
+    [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]
+  ], {color: 'red', weight:8}).addTo(mymap);
+
+var multipolygon = L.polygon(
+  [
+    [[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
+    [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]
+  ], {color: 'purple', weight:3}).addTo(mymap);
+</script>
+<p>
+I made the Albuquerque icon autopan when you drag it outside the boundaries of the map.
+I made the New York Icon (Avengers) not draggable at all, it is stuck in New York City.
+</body>
+</html>
