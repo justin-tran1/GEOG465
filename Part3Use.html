@@ -11,42 +11,97 @@
 var mymap = L.map('mapid' ,{center: [37.0902, -95.7129],zoom: 4});
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
 
+var seattleIcon = L.icon({ //Example
+  iconUrl: 'http://l.thumbs.canstockphoto.com/canstock8020581.jpg',
+  iconSize:[38, 38],});
+var myMarker = L.marker([47.6062, -122.3321], //Example
+  {icon:seattleIcon, draggable: true}).addTo(mymap).bindPopup("Hi, from Seattle");
+
 var NYCIcon = L.icon({iconUrl: 'https://www.searchpng.com/wp-content/uploads/2019/02/avengers-Icon-1024x1024.png',
-  iconSize:[20, 20],});
-var myMarker = L.marker([40.7535, -73.9768],
+  iconSize:[14, 14],});
+var myMarker1 = L.marker([40.7535, -73.9768],
   {icon:NYCIcon, draggable: false, attribution: "Avengers"}).addTo(mymap).bindPopup("Avengers HQ in New York City");
+myMarker1.on('mouseout', function(ev) {
+  alert(ev.latlng);
+});
 
 var ABQIcon = L.icon({iconUrl: 'https://www.clipartwiki.com/clipimg/full/143-1436618_gus-car-bad-t-shirt-goodman-white-walter.png',
-    iconSize:[20, 20],});
-var myMarker1 = L.marker([35.126099, -106.536599],
+    iconSize:[14, 14],});
+var myMarker2 = L.marker([35.126099, -106.536599],
     {icon:ABQIcon, draggable: true, autoPan: true, attribution: "Breaking Bad"}).addTo(mymap).bindPopup("Hello from Albuquerque");
-myMarker1.on('mouseover', function(use){
-  use.togglePopup("I am the one who knocks")
+
+
+myMarker2.on('click', function(ev) {
+  var ChickenIcon = L.icon({iconUrl: 'https://i.ebayimg.com/images/g/lKoAAOSwMytdzd9t/s-l1600.png',
+      iconSize:[20, 20],});
+  var myMarker3 = L.marker([23.6345, -102.5528],
+      {icon:ChickenIcon, autoPan: true, attribution: "Breaking Bad"}).addTo(mymap).bindPopup("Los Pollos Hermanos");;
 });
 
 var mypolyline = L.polyline(
-  [[47.593792, -122.333723],[21.798276, 96.756621],[-17.347259, -114.052004]],
-  {color:'#e6d7d7', weight:2}).addTo(mymap);
+  [[32.545283, -117.032995],
+  [33.467371, -117.669984],
+  [34.894761, -118.918475],
+  [37.599178, -121.346266],
+  [39.179570, -122.155378],
+  [42.425320, -123.235147],
+  [45.718840, -122.661827],
+  [47.025665, -122.904662],
+  [47.310688, -122.246574],
+  [48.776652, -122.467307],
+  [49.001039, -122.756064]],
+  {color:'purple', weight:3}).addTo(mymap).bindPopup("Interstate 5 on West Coast going from border to border.");
+mypolyline.on('click', function(ev) {
+  alert(ev.latlng);
+});
 
-var mypolygon = L.polygon(
-  [[[48.825293, -103.981806],[46.092644,-103.981806],[54.929688, 96.543221],[-49.003219, 97.180428]]],
-  {color:'#e6d7d7', weight:4, fillColor:'green', fillOpacity:0.4}).addTo(mymap);
+var Utah = L.polygon( //Example
+  [[[41.993752, -114.041822],[37.000333, -114.050793],[36.9991532, -109.0451583],
+  [40.9956288,-109.0514054],[40.997978, -111.046700],[42.001648, -111.046772]]],
+  {color: 'cyan',weight:4, opacity:0.25}).addTo(mymap).bindPopup("Utah");
+Utah.on('popupopen', function(ev) {
+  alert(Utah.getCenter());
+});
 
-var multipolyline = L.polyline(
-  [
-    [[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
-    [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]
-  ], {color: 'red', weight:8}).addTo(mymap);
+var mypolyline = L.polyline( //Example
+  [[47.593792, -122.333723],[46.798276, -96.756621],[42.347259, -71.052004]],
+  {color:'red', weight:8}).addTo(mymap);
 
-var multipolygon = L.polygon(
-  [
-    [[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
-    [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]
-  ], {color: 'purple', weight:3}).addTo(mymap);
+var mypolygon = L.polygon( //Example
+  [[[48.825293, -103.981806],
+  [46.092644,-103.981806],
+  [45.929688, -96.543221],
+  [49.003219, -97.180428]]],
+  {color:'red', weight:8, fillColor:'blue', fillOpacity:1}).addTo(mymap);
+
+var multipolyline = L.polyline( //Example
+  [[[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
+  [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]],
+  {color: 'red',weight:8}).addTo(mymap);
+
+var multipolygon = L.polygon( //Example
+  [[[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],
+  [[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]],
+  {color: 'red',weight:8}).addTo(mymap);
 </script>
 <p>
 I made the Albuquerque icon autopan when you drag it outside the boundaries of the map.
-I made the New York Icon (Avengers) not draggable at all, it is stuck in New York City.
+Also, when you click on the Albuquerque icon another icon popups in Mexico.
+I made the New York Icon (<i>Avengers</i>) not draggable at all, it is stuck in New York City.
+There is a popup that shows the coordinates of the icon when your mouse leaves it.
 In the bottom right corner there is the attributions, showing the properties I took inspiration from.
+<br>
+<br>
+For the polyline, I made a polyline representing Interstate 5. It is of course not a perfect recreation,
+but I got coordinate points at the general points to give it a recognizable shape. I also did it so that when
+the mouse clicks over a point of the polyline (I-5 in this case), there is a popup showing the coordinates where
+the mouse clicked over. The coordinates should be different depending on where the mouse is.
+<br>
+<br>
+With the polygon, I chose to do Utah state for my state. It is in an easy shape, only requiring two more
+coordinate points compared to a straight square state like Colorado. Made the opacity of the outline 0.25
+so it is very faint. When you click the Utah, you get a popup that gives you the coordinates of the centroid
+of the state as well as the state name showing up. The centroid uses the getCenter() method.
+</p>
 </body>
 </html>
